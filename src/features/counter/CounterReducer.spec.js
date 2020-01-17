@@ -1,4 +1,4 @@
-import {INCREMENT_COUNTER} from './actionTypes';
+import { INCREMENT_COUNTER } from './actionTypes';
 import CounterReducer from './CounterReducer';
 
 describe('features > counter > CounterReducer', () => {
