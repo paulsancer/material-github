@@ -39,29 +39,21 @@ TabPanel.defaultProps = {
   children: null,
 };
 
-const a11yProps = index => {
-  return {
-    id: `nav-tab-${index}`,
-    'aria-controls': `nav-tabpanel-${index}`,
-  };
-};
+const a11yProps = index => ({
+  id: `nav-tab-${index}`,
+  'aria-controls': `nav-tabpanel-${index}`,
+});
 
 const LinkTab = props => {
   const history = useHistory();
   const { location } = history;
-  // eslint-disable-next-line react/prop-types
-  console.log('IS SELECTED', location.pathname === props.href);
-  // eslint-disable-next-line no-debugger
-  debugger;
   return (
     <Tab
       component="a"
-      // eslint-disable-next-line react/prop-types
       selected={location.pathname === props.href}
       onClick={event => {
         event.preventDefault();
         // eslint-disable-next-line fp/no-mutating-methods
-        // eslint-disable-next-line react/prop-types
         history.push(`${props.href}`);
       }}
       {...props}
@@ -69,13 +61,20 @@ const LinkTab = props => {
   );
 };
 
-// eslint-disable-next-line react/prop-types
+LinkTab.propTypes = {
+  href: PropTypes.string.isRequired,
+};
+
 const LinkTabLabelWithIcon = ({ text, Icon }) => (
   <span style={{ display: 'flex' }}>
     <Icon />
     &nbsp;{text}
   </span>
 );
+LinkTabLabelWithIcon.propTypes = {
+  text: PropTypes.string.isRequired,
+  Icon: PropTypes.func.isRequired,
+};
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -87,15 +86,10 @@ const useStyles = makeStyles(theme => ({
 export default () => {
   const classes = useStyles();
   const match = useRouteMatch();
-  const { location } = useHistory();
-  console.log(match);
   const { url, path } = match;
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (event, newValue) => {
-    console.log(newValue);
-    setValue(newValue);
-  };
+  const handleChange = (event, newValue) => setValue(newValue);
 
   return (
     <div className={classes.root}>
