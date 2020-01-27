@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/material-github/static/css/main.6b862081.chunk.css",
+    "main.js": "/material-github/static/js/main.9d5dbb2f.chunk.js",
+    "main.js.map": "/material-github/static/js/main.9d5dbb2f.chunk.js.map",
+    "runtime-main.js": "/material-github/static/js/runtime-main.99d7fb4c.js",
+    "runtime-main.js.map": "/material-github/static/js/runtime-main.99d7fb4c.js.map",
+    "static/js/2.2788e719.chunk.js": "/material-github/static/js/2.2788e719.chunk.js",
+    "static/js/2.2788e719.chunk.js.map": "/material-github/static/js/2.2788e719.chunk.js.map",
+    "index.html": "/material-github/index.html",
+    "precache-manifest.bd9cfef3c9cbebe595606eaa15f5bb28.js": "/material-github/precache-manifest.bd9cfef3c9cbebe595606eaa15f5bb28.js",
+    "service-worker.js": "/material-github/service-worker.js",
+    "static/css/main.6b862081.chunk.css.map": "/material-github/static/css/main.6b862081.chunk.css.map",
+    "static/js/2.2788e719.chunk.js.LICENSE": "/material-github/static/js/2.2788e719.chunk.js.LICENSE",
+    "static/media/under-construction.png": "/material-github/static/media/under-construction.2b1c6a7a.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.99d7fb4c.js",
+    "static/js/2.2788e719.chunk.js",
+    "static/css/main.6b862081.chunk.css",
+    "static/js/main.9d5dbb2f.chunk.js"
+  ]
+}
