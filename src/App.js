@@ -5,8 +5,6 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom';
-
-// import Counter from 'components/Counter';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import green from '@material-ui/core/colors/lightGreen';
@@ -18,7 +16,7 @@ const theme = createMuiTheme({
     type: 'dark',
     background: {
       default: '#212121',
-      paper: '#333',
+      paper: 'rgba(255,255,255, 0.05)',
     },
     primary: green,
   },
@@ -28,13 +26,18 @@ const App = () => (
   <ThemeProvider theme={theme}>
     <CssBaseline />
     <div className="App">
-      {/* <Counter /> */}
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route path="/:user/:repo">
             <Repo />
           </Route>
-          <Redirect push to="/" />
+          <Redirect
+            push
+            to={
+              process.env.REACT_APP_DefaultRepository ||
+              '/paulsancer/material-github'
+            }
+          />
         </Switch>
       </Router>
     </div>

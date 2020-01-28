@@ -1,43 +1,17 @@
 import React from 'react';
-import { Switch, Route, useHistory, useRouteMatch } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import CodeIcon from '@material-ui/icons/Code';
 import WarningRoundedIcon from '@material-ui/icons/WarningRounded';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CallMergeIcon from '@material-ui/icons/CallMerge';
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <Typography
-      component="div"
-      role="tabpanel"
-      hidden={value !== index}
-      id={`nav-tabpanel-${index}`}
-      aria-labelledby={`nav-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box p={3}>{children}</Box>}
-    </Typography>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
-
-TabPanel.defaultProps = {
-  children: null,
-};
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 
 const a11yProps = index => ({
   id: `nav-tab-${index}`,
@@ -46,11 +20,9 @@ const a11yProps = index => ({
 
 const LinkTab = props => {
   const history = useHistory();
-  const { location } = history;
   return (
     <Tab
       component="a"
-      selected={location.pathname === props.href}
       onClick={event => {
         event.preventDefault();
         // eslint-disable-next-line fp/no-mutating-methods
@@ -76,120 +48,108 @@ LinkTabLabelWithIcon.propTypes = {
   Icon: PropTypes.func.isRequired,
 };
 
+const getSelectedTabIndex = (urls, location) => {
+  if (location.startsWith(urls.issues)) return 1;
+  if (location.startsWith(urls.pulls)) return 2;
+  if (location.startsWith(urls.settings)) return 3;
+  if (location.startsWith(urls.code)) return 0;
+
+  return -1;
+};
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
   },
+  repoNameBar: {
+    padding: '20px 0',
+  },
+  tabsAppBar: {
+    backgroundColor: 'transparent',
+  },
 }));
 
 export default () => {
   const classes = useStyles();
-  const match = useRouteMatch();
-  const { url, path } = match;
-  const [value, setValue] = React.useState(0);
 
-  const handleChange = (event, newValue) => setValue(newValue);
+  const history = useHistory();
+  const { location } = history;
+  const match = useRouteMatch();
+  const { url } = match;
+
+  const urls = {
+    code: url,
+    issues: `${url}/issues`,
+    pulls: `${url}/pulls`,
+    settings: `${url}/settings`,
+  };
+
+  const [selectedTab, setSelectedTabValue] = React.useState(
+    getSelectedTabIndex(urls, location.pathname)
+  );
+
+  const handleTabChange = (_, value) => {
+    setSelectedTabValue(value);
+  };
 
   return (
     <div className={classes.root}>
-      <div style={{ margin: '5rem' }} />
-      <AppBar position="sticky" color="default" elevation={0}>
-        <Tabs
-          variant="standard"
-          indicatorColor="primary"
-          textColor="primary"
-          value={value}
-          onChange={handleChange}
-          aria-label="nav tabs example"
-          centered
+      <Container maxWidth="lg">
+        <div className={classes.repoNameBar}>
+          <Typography variant="h6" component="span">
+            <Link>paulsancer</Link> / <Link>material-github</Link>
+          </Typography>
+        </div>
+        <AppBar
+          classes={{ root: classes.tabsAppBar }}
+          position="sticky"
+          color="transparent"
+          elevation={0}
         >
-          <LinkTab
-            label={<LinkTabLabelWithIcon text="Code" Icon={CodeIcon} />}
-            href={`${url}`}
-            {...a11yProps(0)}
-          />
-          <LinkTab
-            label={
-              <LinkTabLabelWithIcon text="Issues" Icon={WarningRoundedIcon} />
-            }
-            href={`${url}/issues`}
-            {...a11yProps(1)}
-          />
-          <LinkTab
-            label={
-              <LinkTabLabelWithIcon text="Pull Requests" Icon={CallMergeIcon} />
-            }
-            href={`${url}/pulls`}
-            {...a11yProps(2)}
-          />
-          <LinkTab
-            label={<LinkTabLabelWithIcon text="Settings" Icon={SettingsIcon} />}
-            href={`${url}/settings`}
-            {...a11yProps(3)}
-          />
-        </Tabs>
-      </AppBar>
-      <Switch>
-        <Route
-          exact
-          path={`${path}`}
-          component={() => <TabPanel>code</TabPanel>}
-        />
-        <Route
-          exact
-          path={`${path}/issues`}
-          component={() => (
-            <TabPanel>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-              <p>issues</p>
-            </TabPanel>
-          )}
-        />
-        <Route
-          exact
-          path={`${path}/pulls`}
-          component={() => <TabPanel>pull requests</TabPanel>}
-        />
-        <Route
-          exact
-          path={`${path}/settings`}
-          component={() => <TabPanel>settings</TabPanel>}
-        />
-      </Switch>
+          <Tabs
+            variant="standard"
+            indicatorColor="primary"
+            textColor="primary"
+            value={selectedTab}
+            onChange={handleTabChange}
+            aria-label="nav tabs example"
+            className={classes.tabs}
+          >
+            <LinkTab
+              label={
+                <LinkTabLabelWithIcon text="Source Code" Icon={CodeIcon} />
+              }
+              href={urls.code}
+              {...a11yProps(urls.code)}
+            />
+            <LinkTab
+              label={
+                <LinkTabLabelWithIcon text="Issues" Icon={WarningRoundedIcon} />
+              }
+              href={urls.issues}
+              {...a11yProps(urls.issues)}
+            />
+            <LinkTab
+              label={
+                <LinkTabLabelWithIcon
+                  text="Pull Requests"
+                  Icon={CallMergeIcon}
+                />
+              }
+              href={urls.pulls}
+              {...a11yProps(urls.pulls)}
+            />
+            <LinkTab
+              label={
+                <LinkTabLabelWithIcon text="Settings" Icon={SettingsIcon} />
+              }
+              href={urls.settings}
+              {...a11yProps(urls.settings)}
+            />
+          </Tabs>
+        </AppBar>
+      </Container>
     </div>
   );
 };
