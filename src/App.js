@@ -8,6 +8,7 @@ import {
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import green from '@material-ui/core/colors/lightGreen';
+import grey from '@material-ui/core/colors/grey';
 
 import Repo from 'components/repo';
 
@@ -16,9 +17,10 @@ const theme = createMuiTheme({
     type: 'dark',
     background: {
       default: '#212121',
-      paper: 'rgba(255,255,255, 0.05)',
+      paper: '#303030', // 'rgba(255,255,255, 0.05)',
     },
     primary: green,
+    secondary: grey,
   },
 });
 

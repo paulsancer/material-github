@@ -6,12 +6,16 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import CodeIcon from '@material-ui/icons/Code';
-import WarningRoundedIcon from '@material-ui/icons/WarningRounded';
+import BugReport from '@material-ui/icons/BugReport';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CallMergeIcon from '@material-ui/icons/CallMerge';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import StorageIcon from '@material-ui/icons/Storage';
+import PersonIcon from '@material-ui/icons/Person';
+import Chip from '@material-ui/core/Chip';
+import Avatar from '@material-ui/core/Avatar';
 
 const a11yProps = index => ({
   id: `nav-tab-${index}`,
@@ -65,6 +69,16 @@ const useStyles = makeStyles(theme => ({
   repoNameBar: {
     padding: '20px 0',
   },
+  repoNameIcon: {
+    verticalAlign: 'middle',
+  },
+  tabsAppBarWrapper: {
+    backgroundColor: '#303030',
+    position: 'sticky',
+    top: 0,
+    zIndex: 9999,
+    boxShadow: '0 4px 2px -2px rgba(0,0,0,0.3)',
+  },
   tabsAppBar: {
     backgroundColor: 'transparent',
   },
@@ -94,62 +108,87 @@ export default () => {
   };
 
   return (
-    <div className={classes.root}>
-      <Container maxWidth="lg">
-        <div className={classes.repoNameBar}>
-          <Typography variant="h6" component="span">
-            <Link>paulsancer</Link> / <Link>material-github</Link>
-          </Typography>
-        </div>
+    <>
+      <div className={classes.root}>
+        <Container maxWidth="lg">
+          <div className={classes.repoNameBar}>
+            <Typography variant="body1" component="span">
+              <Chip
+                avatar={
+                  <Avatar
+                    alt="Natacha"
+                    src="https://avatars3.githubusercontent.com/u/19829269?s=460&v=4"
+                  />
+                }
+                label="paulsancer"
+                color="secondary"
+                component="a"
+                href="#"
+                clickable
+              />{' '}
+              /{' '}
+              <Chip
+                label="material-github"
+                color="secondary"
+                // icon={<StorageIcon />}
+                component="a"
+                href="#"
+                clickable
+              />
+            </Typography>
+          </div>
+        </Container>
+      </div>
+      <div className={classes.tabsAppBarWrapper}>
         <AppBar
-          classes={{ root: classes.tabsAppBar }}
           position="sticky"
           color="transparent"
           elevation={0}
+          classes={{ root: classes.tabsAppBar }}
         >
-          <Tabs
-            variant="standard"
-            indicatorColor="primary"
-            textColor="primary"
-            value={selectedTab}
-            onChange={handleTabChange}
-            aria-label="nav tabs example"
-            className={classes.tabs}
-          >
-            <LinkTab
-              label={
-                <LinkTabLabelWithIcon text="Source Code" Icon={CodeIcon} />
-              }
-              href={urls.code}
-              {...a11yProps(urls.code)}
-            />
-            <LinkTab
-              label={
-                <LinkTabLabelWithIcon text="Issues" Icon={WarningRoundedIcon} />
-              }
-              href={urls.issues}
-              {...a11yProps(urls.issues)}
-            />
-            <LinkTab
-              label={
-                <LinkTabLabelWithIcon
-                  text="Pull Requests"
-                  Icon={CallMergeIcon}
-                />
-              }
-              href={urls.pulls}
-              {...a11yProps(urls.pulls)}
-            />
-            <LinkTab
-              label={
-                <LinkTabLabelWithIcon text="Settings" Icon={SettingsIcon} />
-              }
-              href={urls.settings}
-              {...a11yProps(urls.settings)}
-            />
-          </Tabs>
+          <Container maxWidth="lg">
+            <Tabs
+              variant="scrollable"
+              indicatorColor="primary"
+              textColor="primary"
+              value={selectedTab}
+              onChange={handleTabChange}
+              aria-label="nav tabs example"
+              className={classes.tabs}
+            >
+              <LinkTab
+                label={
+                  <LinkTabLabelWithIcon text="Source Code" Icon={CodeIcon} />
+                }
+                href={urls.code}
+                {...a11yProps(urls.code)}
+              />
+              <LinkTab
+                label={<LinkTabLabelWithIcon text="Issues" Icon={BugReport} />}
+                href={urls.issues}
+                {...a11yProps(urls.issues)}
+              />
+              <LinkTab
+                label={
+                  <LinkTabLabelWithIcon
+                    text="Pull Requests"
+                    Icon={CallMergeIcon}
+                  />
+                }
+                href={urls.pulls}
+                {...a11yProps(urls.pulls)}
+              />
+              <LinkTab
+                label={
+                  <LinkTabLabelWithIcon text="Settings" Icon={SettingsIcon} />
+                }
+                href={urls.settings}
+                {...a11yProps(urls.settings)}
+              />
+            </Tabs>
+          </Container>
         </AppBar>
-      </Container>
-    </div>
+      </div>
+    </>
   );
 };
