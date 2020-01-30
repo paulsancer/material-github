@@ -90,13 +90,15 @@ export default () => {
   const history = useHistory();
   const { location } = history;
   const match = useRouteMatch();
-  const { url } = match;
+  const { url, params } = match;
+  const { user, repo } = params;
 
   const urls = {
     code: url,
     issues: `${url}/issues`,
     pulls: `${url}/pulls`,
     settings: `${url}/settings`,
+    userProfile: `${window.location.origin}/${user}`,
   };
 
   const [selectedTab, setSelectedTabValue] = React.useState(
@@ -120,15 +122,15 @@ export default () => {
                     src="https://avatars3.githubusercontent.com/u/19829269?s=460&v=4"
                   />
                 }
-                label="paulsancer"
+                label={user}
                 color="secondary"
                 component="a"
-                href="#"
+                href={urls.userProfile}
                 clickable
               />{' '}
               /{' '}
               <Chip
-                label="material-github"
+                label={repo}
                 color="secondary"
                 // icon={<StorageIcon />}
                 component="a"

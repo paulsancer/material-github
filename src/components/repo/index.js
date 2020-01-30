@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Switch, Route, useHistory, useRouteMatch } from 'react-router-dom';
+import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import ComingSoon from 'components/ComingSoon';
 import RepoHeader from './RepoHeader';
 import Issues from './issues';
@@ -12,7 +11,6 @@ const Repo = () => {
 
   return (
     <>
-      <div style={{ height: '40px' }} />
       <RepoHeader />
       <div id="repo-content-wrapper">
         <Switch>

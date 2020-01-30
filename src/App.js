@@ -5,12 +5,15 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom';
+import AppBar from '@material-ui/core/AppBar';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import green from '@material-ui/core/colors/lightGreen';
 import grey from '@material-ui/core/colors/grey';
 
 import Repo from 'components/repo';
+import ComingSoon from 'components/ComingSoon';
+import Header from 'components/layout/Header';
 
 const theme = createMuiTheme({
   palette: {
@@ -28,8 +31,13 @@ const App = () => (
   <ThemeProvider theme={theme}>
     <CssBaseline />
     <div className="App">
-      <Router basename={process.env.PUBLIC_URL}>
+      <Header />
+      {/* <Router basename={process.env.PUBLIC_URL}> */}
+      <Router>
         <Switch>
+          <Route exact path="/:user">
+            <ComingSoon />
+          </Route>
           <Route path="/:user/:repo">
             <Repo />
           </Route>
