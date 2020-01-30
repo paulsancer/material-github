@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "46da2dfa052c51d229a53e9f42fbb1f5",
+    "revision": "bc73d3fa54baa921acfa338f5cf14d59",
     "url": "/material-github/index.html"
   },
   {
-    "revision": "829a463c661f3b63eff1",
+    "revision": "0ab6e7aa0c7884ff0bd2",
     "url": "/material-github/static/css/main.6b862081.chunk.css"
   },
   {
-    "revision": "d7b6600bd7d0eff20c62",
-    "url": "/material-github/static/js/2.0fdd242f.chunk.js"
+    "revision": "163733b56d4b0e35948a",
+    "url": "/material-github/static/js/2.cd6f9155.chunk.js"
   },
   {
     "revision": "e2fc3609d47d90b8cc004bfe15ddf15e",
-    "url": "/material-github/static/js/2.0fdd242f.chunk.js.LICENSE"
+    "url": "/material-github/static/js/2.cd6f9155.chunk.js.LICENSE"
   },
   {
-    "revision": "829a463c661f3b63eff1",
-    "url": "/material-github/static/js/main.176d92e7.chunk.js"
+    "revision": "0ab6e7aa0c7884ff0bd2",
+    "url": "/material-github/static/js/main.83481de6.chunk.js"
   },
   {
     "revision": "db94e7ff13c3b6e96fde",
