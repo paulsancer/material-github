@@ -76,11 +76,14 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#303030',
     position: 'sticky',
     top: 0,
-    zIndex: 9999,
+    zIndex: 99,
     boxShadow: '0 4px 2px -2px rgba(0,0,0,0.3)',
   },
   tabsAppBar: {
     backgroundColor: 'transparent',
+  },
+  tabLink: {
+    textDecoration: 'none',
   },
 }));
 
@@ -118,7 +121,7 @@ export default () => {
               <Chip
                 avatar={
                   <Avatar
-                    alt="Natacha"
+                    alt={user}
                     src="https://avatars3.githubusercontent.com/u/19829269?s=460&v=4"
                   />
                 }
@@ -163,11 +166,13 @@ export default () => {
                   <LinkTabLabelWithIcon text="Source Code" Icon={CodeIcon} />
                 }
                 href={urls.code}
+                classes={{ root: classes.tabLink }}
                 {...a11yProps(urls.code)}
               />
               <LinkTab
                 label={<LinkTabLabelWithIcon text="Issues" Icon={BugReport} />}
                 href={urls.issues}
+                classes={{ root: classes.tabLink }}
                 {...a11yProps(urls.issues)}
               />
               <LinkTab
@@ -178,6 +183,7 @@ export default () => {
                   />
                 }
                 href={urls.pulls}
+                classes={{ root: classes.tabLink }}
                 {...a11yProps(urls.pulls)}
               />
               <LinkTab
@@ -185,6 +191,7 @@ export default () => {
                   <LinkTabLabelWithIcon text="Settings" Icon={SettingsIcon} />
                 }
                 href={urls.settings}
+                classes={{ root: classes.tabLink }}
                 {...a11yProps(urls.settings)}
               />
             </Tabs>

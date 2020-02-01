@@ -32,8 +32,7 @@ const App = () => (
     <CssBaseline />
     <div className="App">
       <Header />
-      {/* <Router basename={process.env.PUBLIC_URL}> */}
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route exact path="/:user">
             <ComingSoon />

@@ -14,9 +14,11 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import AddIcon from '@material-ui/icons/Add';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import Divider from '@material-ui/core/Divider';
+import Button from '@material-ui/core/Button';
+import Avatar from '@material-ui/core/Avatar';
 
-import logoImate from 'images/github_logo_white.png';
-import { Button } from '@material-ui/core';
+import logoImage from 'images/github_logo_white.png';
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -65,13 +67,16 @@ const useStyles = makeStyles(theme => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: 200,
+      width: '100px',
+      '&:focus': {
+        width: '200px',
+      },
     },
   },
   sectionDesktop: {
     display: 'none',
     [theme.breakpoints.up('md')]: {
-      display: 'flex',
+      display: 'block',
     },
   },
   sectionMobile: {
@@ -79,6 +84,20 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
+  },
+  userAvatar: {
+    display: 'inline-flex',
+    flex: '0 0 auto',
+    verticalAlign: 'middle',
+    cursor: 'pointer',
+  },
+  navigation: {
+    '& > .MuiButton-root:not(:last-child)': {
+      marginRight: theme.spacing(1),
+    },
+  },
+  accountMenuIcon: {
+    marginRight: theme.spacing(1),
   },
 }));
 
@@ -118,8 +137,20 @@ export default () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem disabled>
+        <AccountCircle className={classes.accountMenuIcon} /> paulsancer
+      </MenuItem>
+      <Divider />
+      <MenuItem onClick={handleMenuClose}>Your profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Your repositories</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Your projects</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Your stars</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Your gists</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <Divider />
+      <MenuItem onClick={handleMenuClose}>Help</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Settings</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Sign out</MenuItem>
     </Menu>
   );
 
@@ -168,17 +199,7 @@ export default () => {
     <div className={classes.grow}>
       <AppBar position="static" color="default" elevation={1}>
         <Toolbar>
-          {/* <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton> */}
-          {/* <Typography className={classes.title} variant="h6" noWrap>
-          </Typography> */}
-          <img src={logoImate} alt="GitHub" className={classes.logo} />
+          <img src={logoImage} alt="GitHub" className={classes.logo} />
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -192,7 +213,7 @@ export default () => {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
-          <div>
+          <div className={classes.navigation}>
             <Button aria-controls="fade-menu" aria-haspopup="true">
               Pull Requests
             </Button>
@@ -216,16 +237,15 @@ export default () => {
             <IconButton aria-label="show 4 new mails" color="inherit">
               <AddIcon />
             </IconButton>
-            <IconButton
+            <Avatar
+              src="https://avatars3.githubusercontent.com/u/19829269?s=460&v=4"
+              className={classes.userAvatar}
               edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
+            />
           </div>
           <div className={classes.sectionMobile}>
             <IconButton
