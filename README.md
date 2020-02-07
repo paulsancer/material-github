@@ -1,6 +1,6 @@
 # Material GitHub
 
-This project is meant to be a [React](https://reactjs.net/) + [Material UI](https://material-ui.com/) version of GitHub, as a GitHub App.
+This project is meant to be a [React](https://reactjs.org/) + [Material UI](https://material-ui.com/) version of GitHub, as a GitHub App.
 
 ## Demo
 
