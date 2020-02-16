@@ -1,5 +1,4 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import IssueRow from './IssueRow';
 

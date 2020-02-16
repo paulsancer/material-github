@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ComingSoon() {
+export default () => {
   const classes = useStyles();
   return (
     <div className={classes.imageWrapper}>
@@ -40,4 +40,4 @@ export default function ComingSoon() {
       </Typography>
     </div>
   );
-}
+};

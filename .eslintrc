@@ -39,18 +39,19 @@
         "allowedObjects": ["_", "R"]
       }
     ],
+    "no-param-reassign": ["error", { "props": false }]
     // Warning when mutating operators (++, --, etc) are used, object = {} also. Proptypes, defaultProps and common.js (module.exports = {}) are ok.
-    "fp/no-mutation": [
-      "warn",
-      {
-        "commonjs": true,
-        "allowThis": true,
-        "exceptions": [
-          { "property": "propTypes" },
-          { "property": "defaultProps" }
-        ]
-      }
-    ]
+    // "fp/no-mutation": [
+    //   "warn",
+    //   {
+    //     "commonjs": true,
+    //     "allowThis": true,
+    //     "exceptions": [
+    //       { "property": "propTypes" },
+    //       { "property": "defaultProps" }
+    //     ]
+    //   }
+    // ]
   },
   "plugins": ["prettier", "fp"],
   "settings": {
