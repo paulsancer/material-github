@@ -11,9 +11,6 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import CallMergeIcon from '@material-ui/icons/CallMerge';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
-import StorageIcon from '@material-ui/icons/Storage';
-import PersonIcon from '@material-ui/icons/Person';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 
@@ -41,16 +38,22 @@ LinkTab.propTypes = {
   href: PropTypes.string.isRequired,
 };
 
-const LinkTabLabelWithIcon = ({ text, Icon }) => (
+const LinkTabLabelWithIcon = ({ text, Icon, count }) => (
   <span style={{ display: 'flex' }}>
     <Icon />
-    &nbsp;{text}
+    &nbsp;{text}&nbsp;{count > -1 && <Chip label={count} size="small" />}
   </span>
 );
 
 LinkTabLabelWithIcon.propTypes = {
   text: PropTypes.string.isRequired,
-  Icon: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  Icon: PropTypes.object.isRequired,
+  count: PropTypes.number,
+};
+
+LinkTabLabelWithIcon.defaultProps = {
+  count: undefined,
 };
 
 const getSelectedTabIndex = (urls, location) => {
@@ -88,21 +91,20 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default () => {
+const RepoHeader = ({ org, repo, avatarUrl, openIssuesCount, openPrs }) => {
   const classes = useStyles();
 
   const history = useHistory();
   const { location } = history;
   const match = useRouteMatch();
-  const { url, params } = match;
-  const { user, repo } = params;
+  const { url } = match;
 
   const urls = {
     code: url,
     issues: `${url}/issues`,
     pulls: `${url}/pulls`,
     settings: `${url}/settings`,
-    userProfile: `${window.location.origin}/${user}`,
+    userProfile: `${window.location.origin}/${org}`,
   };
 
   const [selectedTab, setSelectedTabValue] = React.useState(
@@ -120,13 +122,8 @@ export default () => {
           <div className={classes.repoNameBar}>
             <Typography variant="body1" component="span">
               <Chip
-                avatar={
-                  <Avatar
-                    alt={user}
-                    src="https://avatars3.githubusercontent.com/u/19829269?s=460&v=4"
-                  />
-                }
-                label={user}
+                avatar={<Avatar alt={org} src={avatarUrl} />}
+                label={org}
                 color="secondary"
                 component="a"
                 href={urls.userProfile}
@@ -148,7 +145,7 @@ export default () => {
       <div className={classes.tabsAppBarWrapper}>
         <AppBar
           position="sticky"
-          color="transparent"
+          color="default"
           elevation={0}
           classes={{ root: classes.tabsAppBar }}
         >
@@ -171,7 +168,13 @@ export default () => {
                 {...a11yProps(urls.code)}
               />
               <LinkTab
-                label={<LinkTabLabelWithIcon text="Issues" Icon={BugReport} />}
+                label={
+                  <LinkTabLabelWithIcon
+                    text="Issues"
+                    Icon={BugReport}
+                    count={openIssuesCount}
+                  />
+                }
                 href={urls.issues}
                 classes={{ root: classes.tabLink }}
                 {...a11yProps(urls.issues)}
@@ -181,6 +184,7 @@ export default () => {
                   <LinkTabLabelWithIcon
                     text="Pull Requests"
                     Icon={CallMergeIcon}
+                    count={openPrs}
                   />
                 }
                 href={urls.pulls}
@@ -202,3 +206,13 @@ export default () => {
     </>
   );
 };
+
+RepoHeader.propTypes = {
+  openIssuesCount: PropTypes.number.isRequired,
+  openPrs: PropTypes.number.isRequired,
+  org: PropTypes.string.isRequired,
+  repo: PropTypes.string.isRequired,
+  avatarUrl: PropTypes.string.isRequired,
+};
+
+export default RepoHeader;

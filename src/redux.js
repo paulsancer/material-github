@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
-import { CounterReducer } from './features/counter';
+import repoDetailsReducer from 'features/repoDetails/repoSlice';
+import repoIssuesReducer from 'features/repoIssues/repoIssuesSlice';
 
 export const rootReducer = combineReducers({
-  count: CounterReducer,
+  repoDetails: repoDetailsReducer,
+  repoIssues: repoIssuesReducer,
 });
 
 export const store = configureStore({

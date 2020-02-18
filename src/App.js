@@ -11,7 +11,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import green from '@material-ui/core/colors/lightGreen';
 import grey from '@material-ui/core/colors/grey';
 
-import Repo from 'components/repo';
+import Repo from 'features/repoDetails';
 import ComingSoon from 'components/ComingSoon';
 import Header from 'components/layout/Header';
 
@@ -34,10 +34,10 @@ const App = () => (
       <Header />
       <Router basename={process.env.PUBLIC_URL}>
         <Switch>
-          <Route exact path="/:user">
+          <Route exact path="/:org">
             <ComingSoon />
           </Route>
-          <Route path="/:user/:repo">
+          <Route path="/:org/:repo">
             <Repo />
           </Route>
           <Redirect
