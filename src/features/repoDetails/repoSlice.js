@@ -14,7 +14,6 @@ const repoSlice = createSlice({
       state.error = action.payload;
     },
     getRepoDetailsSuccess: (state, { payload }) => {
-      console.log(payload);
       state.org = payload.owner.login;
       state.openIssuesCount = payload.open_issues_count;
       state.orgAvatar = payload.owner.avatar_url;

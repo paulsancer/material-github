@@ -4,15 +4,13 @@ import { useRouteMatch } from 'react-router-dom';
 
 import Container from '@material-ui/core/Container';
 import { fetchRepoIssues } from 'features/repoIssues/repoIssuesSlice';
-import IssueRow from './IssueRow';
-
-const user = { username: 'paulsancer', avatarUrl: '' };
+import IssueCard from './IssueRow';
 
 export default function Issues() {
   const match = useRouteMatch();
   const dispatch = useDispatch();
-  const [page, setPage] = useState(1);
-  const { isLoading, issues, error } = useSelector(state => state.repoIssues);
+  const [page] = useState(1);
+  const { isLoading, issues } = useSelector(state => state.repoIssues);
 
   const { params } = match;
   const { org, repo } = params;
@@ -29,10 +27,15 @@ export default function Issues() {
     <Container>
       {issues &&
         issues.map(issue => (
-          <IssueRow
+          <IssueCard
             key={issue.id}
+            id={issue.number}
+            number={issue.number}
             title={issue.title}
-            user={user}
+            user={{
+              username: issue.user.login,
+              avatarUrl: issue.user.avatar_url,
+            }}
             description={issue.body}
           />
         ))}

@@ -5,7 +5,6 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom';
-import AppBar from '@material-ui/core/AppBar';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import green from '@material-ui/core/colors/lightGreen';

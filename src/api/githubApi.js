@@ -1,5 +1,5 @@
 import axios from 'axios';
-import parseLink, { Links } from 'parse-link-header';
+import parseLink from 'parse-link-header';
 
 const GitHubAPIUrl = 'https://api.github.com';
 

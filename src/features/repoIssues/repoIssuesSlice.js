@@ -19,7 +19,6 @@ const repoIssuesSlice = createSlice({
       state.error = action.payload;
     },
     getIssuesSuccess: (state, { payload }) => {
-      console.log(payload);
       state.error = null;
       state.isLoading = false;
       state.issues = payload.issues;

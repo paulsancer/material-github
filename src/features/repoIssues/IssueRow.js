@@ -1,54 +1,82 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
-import makeStyles from '@material-ui/core/styles/makeStyles';
 import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
+const useStyles = makeStyles(({ spacing, palette }) => ({
+  card: {
+    marginTop: spacing(2),
+    display: 'flex',
+    padding: spacing(2),
+    minWidth: 288,
+    borderRadius: 12,
+    boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.2)',
+    '& > *:nth-child(1)': {
+      marginRight: spacing(2),
+    },
+    '& > *:nth-child(2)': {
+      flex: 'auto',
+    },
   },
-  avatarWrapper: {
-    display: 'inline-block',
-    // width: '80px',
+  avatar: {},
+  heading: {
+    fontSize: 20,
+    marginBottom: 0,
+    fontWeight: 'bold',
   },
-  contentWrapper: {
-    display: 'inline-block',
-    width: 'auto',
-    marginLeft: '1rem',
+  headingIssueNumber: {
+    color: palette.grey[500],
   },
-  flex: { display: 'flex' },
+  subheader: {
+    fontSize: 14,
+    color: palette.grey[500],
+    letterSpacing: '1px',
+    marginBottom: 4,
+    marginTop: 4,
+  },
+  value: {
+    marginLeft: 8,
+    fontSize: 14,
+    color: palette.grey[500],
+  },
 }));
 
-const IssueRow = ({ id, title, description, user, labels }) => {
-  const classes = useStyles();
+const IssueCard = ({
+  id,
+  number,
+  title,
+  description,
+  user,
+  labels,
+  className,
+}) => {
+  const styles = useStyles();
   return (
-    <Box className={classes.root}>
-      <Card elevation={1}>
-        <Box p={2} className={classes.flex}>
-          <div className={classes.avatarWrapper}>
-            <Avatar src={user.avatarUrl} />
-          </div>
-          <div className={classes.contentWrapper}>
-            <Typography variant="h6">
-              <Typography variant="h6" color="textSecondary" component="span">
-                #{id}
-              </Typography>{' '}
-              {title}
-            </Typography>
-            <Typography variant="body1">{description}</Typography>
-          </div>
+    <Card className={cx(styles.card, className)} elevation={0}>
+      <Avatar src={user.avatarUrl} className={styles.avatar} />
+      <Box>
+        <Typography variant="h3" className={styles.heading}>
+          {title} <span className={styles.headingIssueNumber}>#{number}</span>
+        </Typography>
+        <p className={styles.subheader}>Opened by {user.username}</p>
+        <Box display="flex" alignItems="center">
+          <Typography variant="body1">
+            {description.substring(0, 200)}...
+          </Typography>
         </Box>
-      </Card>
-    </Box>
+      </Box>
+    </Card>
   );
 };
 
-IssueRow.propTypes = {
+IssueCard.propTypes = {
+  className: PropTypes.string,
   id: PropTypes.number.isRequired,
+  number: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   user: PropTypes.shape({
@@ -63,8 +91,9 @@ IssueRow.propTypes = {
   ),
 };
 
-IssueRow.defaultProps = {
+IssueCard.defaultProps = {
+  className: '',
   labels: [],
 };
 
-export default IssueRow;
+export default IssueCard;
