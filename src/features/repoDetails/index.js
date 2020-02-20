@@ -1,12 +1,26 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core';
+import clsx from 'clsx';
 import ComingSoon from 'components/ComingSoon';
+import Loader from 'components/Loader';
 import RepoIssues from 'features/repoIssues';
 import { fetchRepoDetails } from './repoSlice';
 import RepoHeader from './RepoHeader';
 
+const useStyles = makeStyles(() => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  grow: {
+    flexGrow: 1,
+  },
+}));
+
 const Repo = () => {
+  const classes = useStyles();
   const match = useRouteMatch();
   const dispatch = useDispatch();
   const { isLoading, openIssuesCount, orgAvatar, openPrs = 0 } = useSelector(
@@ -20,11 +34,11 @@ const Repo = () => {
   }, [dispatch, org, repo]);
 
   if (isLoading) {
-    return <span>Loading...</span>;
+    return <Loader />;
   }
 
   return (
-    <>
+    <div className={clsx(classes.root, classes.grow)}>
       <RepoHeader
         org={org}
         repo={repo}
@@ -32,7 +46,7 @@ const Repo = () => {
         openIssuesCount={openIssuesCount}
         openPrs={openPrs}
       />
-      <div id="repo-content-wrapper">
+      <div className={classes.grow}>
         <Switch>
           <Route exact path={path} component={ComingSoon} />
           <Route exact path={`${path}/issues`} component={RepoIssues} />
@@ -40,7 +54,7 @@ const Repo = () => {
           <Route exact path={`${path}/settings`} component={ComingSoon} />
         </Switch>
       </div>
-    </>
+    </div>
   );
 };
 

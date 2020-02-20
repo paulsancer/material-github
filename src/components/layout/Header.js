@@ -194,7 +194,7 @@ export default () => {
   );
 
   return (
-    <div className={classes.grow}>
+    <div>
       <AppBar position="static" color="default" elevation={1}>
         <Toolbar>
           <img src={logoImage} alt="GitHub" className={classes.logo} />

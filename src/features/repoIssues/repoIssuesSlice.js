@@ -34,7 +34,7 @@ export const {
 
 export const fetchRepoIssues = (org, repo, page = 1) => async dispatch => {
   try {
-    await sleep(2000);
+    await sleep(1000);
     const repoDetails = await getIssues(org, repo, page);
     dispatch(getIssuesSuccess(repoDetails));
   } catch (err) {

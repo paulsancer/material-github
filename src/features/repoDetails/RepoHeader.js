@@ -67,7 +67,7 @@ const getSelectedTabIndex = (urls, location) => {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
+    // flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
   },
   repoNameBar: {

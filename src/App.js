@@ -5,7 +5,11 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import {
+  ThemeProvider,
+  createMuiTheme,
+  makeStyles,
+} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import green from '@material-ui/core/colors/lightGreen';
 import grey from '@material-ui/core/colors/grey';
@@ -26,30 +30,37 @@ const theme = createMuiTheme({
   },
 });
 
-const App = () => (
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
-    <div className="App">
-      <Header />
-      <Router basename={process.env.PUBLIC_URL}>
-        <Switch>
-          <Route exact path="/:org">
-            <ComingSoon />
-          </Route>
-          <Route path="/:org/:repo">
-            <Repo />
-          </Route>
-          <Redirect
-            push
-            to={
-              process.env.REACT_APP_DefaultRepository ||
-              '/paulsancer/material-github'
-            }
-          />
-        </Switch>
-      </Router>
-    </div>
-  </ThemeProvider>
-);
+const useStyles = makeStyles(() => ({
+  app: { display: 'flex', flexDirection: 'column', height: '100%' },
+}));
+
+const App = () => {
+  const { app } = useStyles();
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <div className={app}>
+        <Header />
+        <Router basename={process.env.PUBLIC_URL}>
+          <Switch>
+            <Route exact path="/:org">
+              <ComingSoon />
+            </Route>
+            <Route path="/:org/:repo">
+              <Repo />
+            </Route>
+            <Redirect
+              push
+              to={
+                process.env.REACT_APP_DefaultRepository ||
+                '/paulsancer/material-github'
+              }
+            />
+          </Switch>
+        </Router>
+      </div>
+    </ThemeProvider>
+  );
+};
 
 export default App;
