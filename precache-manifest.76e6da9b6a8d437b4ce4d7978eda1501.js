@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2abb05ff04be6cb2d8a3c356224b667a",
+    "revision": "8c324bc157077d60de55b17828259096",
     "url": "/material-github/index.html"
   },
   {
-    "revision": "18d3fd3ecafc84fd1dc7",
-    "url": "/material-github/static/css/main.6b862081.chunk.css"
+    "revision": "b850a322dac3fa505d40",
+    "url": "/material-github/static/css/main.bcf6496e.chunk.css"
   },
   {
-    "revision": "afbab9518cca191b3316",
-    "url": "/material-github/static/js/2.1cd6de06.chunk.js"
+    "revision": "6d9379f750b4b8ea7d3b",
+    "url": "/material-github/static/js/2.f2104400.chunk.js"
   },
   {
     "revision": "066eba045d6275c997ebdb78b3abf0c5",
-    "url": "/material-github/static/js/2.1cd6de06.chunk.js.LICENSE"
+    "url": "/material-github/static/js/2.f2104400.chunk.js.LICENSE"
   },
   {
-    "revision": "18d3fd3ecafc84fd1dc7",
-    "url": "/material-github/static/js/main.6098a671.chunk.js"
+    "revision": "b850a322dac3fa505d40",
+    "url": "/material-github/static/js/main.f407359a.chunk.js"
   },
   {
     "revision": "db94e7ff13c3b6e96fde",

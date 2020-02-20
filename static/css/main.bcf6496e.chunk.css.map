@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.scss"],"names":[],"mappings":"AAAA,qBAIE,QAAS,CACT,SAAU,CACV,WAAY","file":"main.bcf6496e.chunk.css","sourcesContent":["body,\nhtml,\n#root,\n.App {\n  margin: 0;\n  padding: 0;\n  height: 100%;\n}\n"]}
