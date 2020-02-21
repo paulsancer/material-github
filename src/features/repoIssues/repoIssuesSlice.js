@@ -33,10 +33,12 @@ export const {
 } = repoIssuesSlice.actions;
 
 export const fetchRepoIssues = (org, repo, page = 1) => async dispatch => {
+  dispatch(getIssuesStart());
   try {
-    await sleep(1000);
-    const repoDetails = await getIssues(org, repo, page);
-    dispatch(getIssuesSuccess(repoDetails));
+    // await sleep(1000);
+    const issues = await getIssues(org, repo, page);
+    console.log(issues);
+    dispatch(getIssuesSuccess(issues));
   } catch (err) {
     dispatch(getIssuesFailed(err.toString()));
   }

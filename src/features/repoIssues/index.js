@@ -39,6 +39,9 @@ export default function Issues() {
                 avatarUrl: issue.user.avatar_url,
               }}
               description={issue.body}
+              createdAt={issue.created_at}
+              comments={issue.comments}
+              labels={issue.labels}
             />
           ))}
       </Container>

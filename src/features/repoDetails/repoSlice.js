@@ -33,7 +33,7 @@ export const {
 
 export const fetchRepoDetails = (org, repo) => async dispatch => {
   try {
-    await sleep(1000);
+    // await sleep(1000);
     const repoDetails = await getRepoDetails(org, repo);
     dispatch(getRepoDetailsSuccess(repoDetails));
   } catch (err) {
