@@ -8,4 +8,4 @@ For the moment, the latest releases will be published in GitHub pages at: https:
 
 ## Help wanted
 
-Please help :weary:.
+Please don't hesitate to throw a PR or Issue if you got an idea or you would like to help me build this thing 😊.
