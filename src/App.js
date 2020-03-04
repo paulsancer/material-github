@@ -41,7 +41,7 @@ const App = () => {
       <CssBaseline />
       <div className={app}>
         <Header />
-        <Router basename={process.env.PUBLIC_URL}>
+        <Router basename={process.env.REACT_APP_RouterBaseName}>
           <Switch>
             <Route exact path="/:org">
               <ComingSoon />
