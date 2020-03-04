@@ -2,7 +2,7 @@
   "name": "material-github",
   "version": "0.1.0",
   "private": false,
-  "homepage": "http://paulsancer.github.io/material-github",
+  "homepage": "https://material-github.netlify.com",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
