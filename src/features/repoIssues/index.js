@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import Slide from '@material-ui/core/Slide';
+// import Pagination from '@material-ui/core/Pagination';
+// import PaginationItem from '@material-ui/core/PaginationItem';
 import { fetchRepoIssues } from 'features/repoIssues/repoIssuesSlice';
 import Loader from 'components/Loader';
 import IssueCard from './IssueRow';
@@ -44,6 +46,7 @@ export default function Issues() {
               labels={issue.labels}
             />
           ))}
+        {/* <Pagination /> */}
       </Container>
     </Slide>
   );

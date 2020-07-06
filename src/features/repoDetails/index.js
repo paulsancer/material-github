@@ -13,6 +13,7 @@ const useStyles = makeStyles(() => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
+    paddingBottom: '1rem',
   },
   grow: {
     flexGrow: 1,

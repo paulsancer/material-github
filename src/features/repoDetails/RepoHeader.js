@@ -26,8 +26,12 @@ const LinkTab = props => {
       component="a"
       onClick={event => {
         event.preventDefault();
-        // eslint-disable-next-line fp/no-mutating-methods
-        history.push(`${props.href}`);
+        console.log(history, props);
+        if (history.location.pathname !== props.href)
+          history.push(`${props.href}`);
+        else {
+          // dispatch fetch...
+        }
       }}
       {...props}
     />
@@ -69,6 +73,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     // flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
+    fontSize: '20px',
   },
   repoNameBar: {
     padding: '20px 0',
@@ -104,7 +109,7 @@ const RepoHeader = ({ org, repo, avatarUrl, openIssuesCount, openPrs }) => {
     issues: `${url}/issues`,
     pulls: `${url}/pulls`,
     settings: `${url}/settings`,
-    userProfile: `${window.location.origin}/${org}`,
+    userProfile: `/${org}`,
   };
 
   const [selectedTab, setSelectedTabValue] = React.useState(
@@ -128,15 +133,16 @@ const RepoHeader = ({ org, repo, avatarUrl, openIssuesCount, openPrs }) => {
                 component="a"
                 href={urls.userProfile}
                 clickable
+                classes={{ root: classes.root }}
               />{' '}
               /{' '}
               <Chip
                 label={repo}
                 color="secondary"
-                // icon={<StorageIcon />}
                 component="a"
                 href="#"
                 clickable
+                classes={{ root: classes.root }}
               />
             </Typography>
           </div>

@@ -13,15 +13,16 @@ const repoIssuesSlice = createSlice({
   reducers: {
     getIssuesStart: state => {
       state.isLoading = true;
+      state.error = null;
     },
-    getIssuesFailed: (state, action) => {
+    getIssuesFailed: (state, { payload }) => {
       state.isLoading = false;
-      state.error = action.payload;
+      state.error = payload;
     },
     getIssuesSuccess: (state, { payload }) => {
       state.error = null;
       state.isLoading = false;
-      state.issues = payload.issues;
+      state.issues = payload;
     },
   },
 });
@@ -35,10 +36,10 @@ export const {
 export const fetchRepoIssues = (org, repo, page = 1) => async dispatch => {
   dispatch(getIssuesStart());
   try {
-    // await sleep(1000);
-    const issues = await getIssues(org, repo, page);
-    console.log(issues);
-    dispatch(getIssuesSuccess(issues));
+    await sleep(500);
+    const { issues } = await getIssues(org, repo, page);
+    const iss = issues.filter(i => !i.pull_request);
+    dispatch(getIssuesSuccess(iss));
   } catch (err) {
     dispatch(getIssuesFailed(err.toString()));
   }
