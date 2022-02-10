@@ -29,7 +29,7 @@
     "husky": "^4.0.10",
     "lint-staged": "^9.5.0",
     "moment": "^2.24.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "parse-link-header": "^1.0.1",
     "prettier": "^1.19.1",
     "prop-types": "^15.7.2",
